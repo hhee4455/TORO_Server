@@ -1,6 +1,8 @@
 from dataclasses import dataclass, field
 from ..types import UUID, generate_uuid, current_time
 from ..utils import update_timestamp
+from datetime import datetime
+from typing import Optional
 
 @dataclass
 class RefreshToken:

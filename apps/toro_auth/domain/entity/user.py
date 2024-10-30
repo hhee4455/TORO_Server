@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 from ..types import UUID, generate_uuid, current_time
+from datetime import datetime
 
 @dataclass
 class User:
