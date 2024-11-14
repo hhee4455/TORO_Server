@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from ...domain.entity.user import User
+from .account_model import AccountModel
 from uuid import uuid4
 
 class UserModel(models.Model):
@@ -17,6 +18,8 @@ class UserModel(models.Model):
     fieldwork_availability = models.CharField(max_length=100, blank=True, null=True)
     field = models.CharField(max_length=100, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+
+    account = models.ForeignKey(AccountModel, on_delete=models.CASCADE, related_name='user_models', null=True)
 
     def to_entity(self):
         return User(
@@ -53,3 +56,4 @@ class UserModel(models.Model):
 
     class Meta:
         app_label = 'toro_auth'
+        db_table = 'user'

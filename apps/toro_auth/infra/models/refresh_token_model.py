@@ -33,3 +33,4 @@ class RefreshTokenModel(models.Model):
         )
     class Meta:
         app_label = 'toro_auth'
+        db_table = 'refresh_token'
