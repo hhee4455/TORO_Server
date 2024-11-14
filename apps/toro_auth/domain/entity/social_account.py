@@ -1,6 +1,6 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import Optional
-from ..types import UUID, generate_uuid
+from uuid import UUID
 
 @dataclass
 class SocialAccount:
@@ -15,19 +15,9 @@ class SocialAccount:
         refresh_token (str): 소셜 계정 갱신 토큰.
         account_id (Optional[UUID]): 연결된 계정의 ID.
     """
-
-    id: UUID = field(default_factory=generate_uuid)
+    id: UUID
     provider: str
     provider_user_id: str
     access_token: str
     refresh_token: str
-    account_id: Optional[UUID] = None
-
-    def refresh_access_token(self, new_token: str):
-        """
-        접근 토큰을 갱신합니다.
-
-        Args:
-            new_token (str): 새로 갱신된 접근 토큰.
-        """
-        self.access_token = new_token
+    account_id: Optional[str] = None

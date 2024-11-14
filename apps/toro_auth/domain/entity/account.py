@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from ..types import UUID, generate_uuid, current_time
 from datetime import datetime
+from uuid import UUID
 
 @dataclass
 class Account:
@@ -17,20 +17,10 @@ class Account:
         is_staff (bool): 직원 여부.
         phone (Optional[str]): 사용자 전화번호.
     """
-
-    id: UUID = field(default_factory=generate_uuid)
+    id: UUID
     email: str
     password: str
     name: str
-    date_joined: datetime = field(default_factory=current_time)
+    date_joined: datetime = field(default_factory=datetime.now)
     is_staff: bool = False
     phone: Optional[str] = None
-
-    def change_password(self, new_password: str):
-        """
-        계정 비밀번호를 변경합니다.
-
-        Args:
-            new_password (str): 새 비밀번호.
-        """
-        self.password = new_password

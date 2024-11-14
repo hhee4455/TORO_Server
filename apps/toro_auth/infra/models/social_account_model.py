@@ -1,7 +1,7 @@
 from django.db import models
-from uuid import uuid4
 from ...domain.entity.social_account import SocialAccount
 from .account_model import AccountModel
+from uuid import uuid4
 
 class SocialAccountModel(models.Model):
     """SocialAccount Django ORM 모델"""
@@ -11,7 +11,6 @@ class SocialAccountModel(models.Model):
     access_token = models.TextField()
     refresh_token = models.TextField()
     account = models.ForeignKey(AccountModel, on_delete=models.CASCADE, null=True)
-    is_verified = models.BooleanField(default=False)
 
     def to_entity(self):
         return SocialAccount(
@@ -21,7 +20,6 @@ class SocialAccountModel(models.Model):
             access_token=self.access_token,
             refresh_token=self.refresh_token,
             account_id=self.account.id if self.account else None,
-            is_verified=self.is_verified
         )
 
     @classmethod
@@ -34,5 +32,7 @@ class SocialAccountModel(models.Model):
             access_token=social_account.access_token,
             refresh_token=social_account.refresh_token,
             account=account_instance,
-            is_verified=social_account.is_verified
         )
+    
+    class Meta:
+        app_label = 'toro_auth'

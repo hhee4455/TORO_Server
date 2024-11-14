@@ -1,8 +1,7 @@
 from dataclasses import dataclass, field
-from ..types import UUID, generate_uuid, current_time
-from ..utils import update_timestamp
 from datetime import datetime
 from typing import Optional
+from uuid import UUID
 
 @dataclass
 class RefreshToken:
@@ -16,19 +15,10 @@ class RefreshToken:
         updated_at (datetime): 마지막 갱신 시각.
         account_id (Optional[UUID]): 연결된 계정의 ID.
     """
-
-    id: UUID = field(default_factory=generate_uuid)
+    id: UUID
     token: str
-    created_at: datetime = field(default_factory=current_time)
-    updated_at: datetime = field(default_factory=current_time)
-    account_id: Optional[UUID] = None
+    created_at: datetime = field(default_factory=datetime.now)
+    updated_at: datetime = field(default_factory=datetime.now)
+    account_id: Optional[str] = None
 
-    def refresh_token(self, new_token: str):
-        """
-        리프레시 토큰을 갱신하고 갱신 시간을 업데이트합니다.
 
-        Args:
-            new_token (str): 새 리프레시 토큰 값.
-        """
-        self.token = new_token
-        self.updated_at = update_timestamp()

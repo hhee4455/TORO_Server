@@ -1,4 +1,3 @@
-# apps/toro_auth/infra/repositories/user_repository.py
 from ..models.user_model import UserModel
 from ...domain.entity.user import User
 

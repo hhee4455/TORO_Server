@@ -20,7 +20,6 @@ INSTALLED_APPS = [
 
     # 프로젝트 앱
     'apps.toro_auth',  # 사용자 인증 관련 앱
-    'apps.toro_board',  # 게시판 관련 앱
 
     # Django REST Framework
     'rest_framework',

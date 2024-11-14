@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from ..types import UUID, generate_uuid, current_time
 from datetime import datetime
+from uuid import UUID
 
 @dataclass
 class User:
@@ -22,24 +22,15 @@ class User:
         field (Optional[str]): 전문 분야.
         is_active (bool): 활성화 상태 여부.
     """
-
-    id: UUID = field(default_factory=generate_uuid)
+    id: UUID
     nickname: str
     profile_picture: Optional[str] = None
     bio: Optional[str] = None
     is_public: bool = False
-    last_seen: datetime = field(default_factory=current_time)
+    last_seen: datetime = field(default_factory=datetime.now)
     location: Optional[str] = None
     available_for_work: bool = False
     follower_count: int = 0
     fieldwork_availability: Optional[str] = None
     field: Optional[str] = None
     is_active: bool = True
-
-    def toggle_public_status(self):
-        """
-        사용자의 공개 상태를 토글합니다.
-        
-        현재 상태가 공개면 비공개로, 비공개면 공개로 전환합니다.
-        """
-        self.is_public = not self.is_public

@@ -1,7 +1,7 @@
 from django.db import models
-from uuid import uuid4
 from datetime import datetime
 from ...domain.entity.user import User
+from uuid import uuid4
 
 class UserModel(models.Model):
     """User Django ORM 모델"""
@@ -10,18 +10,17 @@ class UserModel(models.Model):
     profile_picture = models.URLField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     is_public = models.BooleanField(default=False)
-    last_seen = models.DateTimeField(default=datetime.utcnow)
+    last_seen = models.DateTimeField(default=datetime.now)
     location = models.CharField(max_length=100, blank=True, null=True)
     available_for_work = models.BooleanField(default=False)
     follower_count = models.IntegerField(default=0)
     fieldwork_availability = models.CharField(max_length=100, blank=True, null=True)
     field = models.CharField(max_length=100, blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    is_verified = models.BooleanField(default=False)
 
     def to_entity(self):
         return User(
-            id=self.id,
+            id = self.id,
             nickname=self.nickname,
             profile_picture=self.profile_picture,
             bio=self.bio,
@@ -33,7 +32,6 @@ class UserModel(models.Model):
             fieldwork_availability=self.fieldwork_availability,
             field=self.field,
             is_active=self.is_active,
-            is_verified=self.is_verified
         )
 
     @classmethod
@@ -51,5 +49,7 @@ class UserModel(models.Model):
             fieldwork_availability=user.fieldwork_availability,
             field=user.field,
             is_active=user.is_active,
-            is_verified=user.is_verified
         )
+
+    class Meta:
+        app_label = 'toro_auth'
