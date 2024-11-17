@@ -24,3 +24,4 @@ class Account:
     date_joined: datetime = field(default_factory=datetime.now)
     is_staff: bool = False
     phone: Optional[str] = None
+    verification_code: Optional[str] = None

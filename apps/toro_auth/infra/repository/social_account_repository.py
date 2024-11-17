@@ -1,5 +1,5 @@
-from ..models.social_account_model import SocialAccountModel
-from ...domain.entity.social_account import SocialAccount
+from apps.toro_auth.infra.models.social_account_model import SocialAccountModel
+from apps.toro_auth.domain.entity.social_account import SocialAccount
 
 class SocialAccountRepository:
     """SocialAccount 데이터를 관리하는 레포지토리"""

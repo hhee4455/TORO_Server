@@ -1,4 +1,5 @@
 from pathlib import Path
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -11,6 +12,14 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    # Django 앱
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
     # 프로젝트 앱
     'apps.toro_auth',  # 사용자 인증 관련 앱
 
@@ -106,3 +115,15 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+# 환경 설정 읽기
+env = environ.Env()
+environ.Env.read_env()  # 이 부분을 통해 .env 파일을 로드합니다.
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = env("EMAIL")  # 환경 변수 EMAIL에서 값을 가져옴
+EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")  # 환경 변수 EMAIL_PASSWORD에서 값을 가져옴
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

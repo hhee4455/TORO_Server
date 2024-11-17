@@ -1,5 +1,5 @@
-from ..models.refresh_token_model import RefreshTokenModel
-from ...domain.entity.refresh_token import RefreshToken
+from apps.toro_auth.infra.models.refresh_token_model import RefreshTokenModel
+from apps.toro_auth.domain.entity.refresh_token import RefreshToken
 
 class RefreshTokenRepository:
     """RefreshToken 데이터를 관리하는 레포지토리"""

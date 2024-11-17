@@ -1,5 +1,5 @@
-from ..models.account_model import AccountModel
-from ...domain.entity.account import Account
+from apps.toro_auth.infra.models import AccountModel
+from apps.toro_auth.domain.entity import Account
 
 class AccountRepository:
     """Account 데이터를 관리하는 레포지토리"""

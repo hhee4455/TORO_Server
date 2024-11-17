@@ -1,6 +1,6 @@
 from django.db import models
-from ...domain.entity.social_account import SocialAccount
-from .account_model import AccountModel
+from apps.toro_auth.domain.entity.social_account import SocialAccount
+from apps.toro_auth.infra.models.account_model import AccountModel
 from uuid import uuid4
 
 class SocialAccountModel(models.Model):
@@ -12,28 +12,6 @@ class SocialAccountModel(models.Model):
     refresh_token = models.TextField()
     account = models.ForeignKey(AccountModel, on_delete=models.CASCADE, null=True)
 
-    def to_entity(self):
-        return SocialAccount(
-            id=self.id,
-            provider=self.provider,
-            provider_user_id=self.provider_user_id,
-            access_token=self.access_token,
-            refresh_token=self.refresh_token,
-            account_id=self.account.id if self.account else None,
-        )
-
-    @classmethod
-    def from_entity(cls, social_account: SocialAccount):
-        account_instance = AccountModel.objects.get(id=social_account.account_id) if social_account.account_id else None
-        return cls(
-            id=social_account.id,
-            provider=social_account.provider,
-            provider_user_id=social_account.provider_user_id,
-            access_token=social_account.access_token,
-            refresh_token=social_account.refresh_token,
-            account=account_instance,
-        )
-    
     class Meta:
         app_label = 'toro_auth'
         db_table = 'social_account'
