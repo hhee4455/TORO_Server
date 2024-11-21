@@ -15,7 +15,6 @@ class Account:
         name (str): 사용자 이름.
         date_joined (datetime): 계정 생성 날짜.
         is_staff (bool): 직원 여부.
-        phone (Optional[str]): 사용자 전화번호.
     """
     id: UUID
     email: str
@@ -23,5 +22,3 @@ class Account:
     name: str
     date_joined: datetime = field(default_factory=datetime.now)
     is_staff: bool = False
-    phone: Optional[str] = None
-    verification_code: Optional[str] = None

@@ -20,7 +20,7 @@ CORS_ALLOW_HEADERS = [
     "content-type",
     "authorization",
     "x-requested-with",
-    "x-csrftoken",  # CSRF 토큰을 위한 헤더 추가
+    "x-csrftoken", 
     "accept",
     "origin",
 ]
@@ -45,6 +45,9 @@ INSTALLED_APPS = [
 
     # CORS
     'corsheaders',
+
+    # jwt
+    'rest_framework_simplejwt',
 
 ]
 
@@ -129,6 +132,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',

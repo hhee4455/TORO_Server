@@ -12,8 +12,6 @@ class AccountMapper:
             name=account_model.name,
             date_joined=account_model.date_joined,
             is_staff=account_model.is_staff,
-            phone=account_model.phone,
-            verification_code=account_model.verification_code
         )
 
     @staticmethod
@@ -25,6 +23,4 @@ class AccountMapper:
             name=domain_account.name,
             date_joined=domain_account.date_joined,
             is_staff=domain_account.is_staff,
-            phone=domain_account.phone,
-            verification_code=domain_account.verification_code
         )
