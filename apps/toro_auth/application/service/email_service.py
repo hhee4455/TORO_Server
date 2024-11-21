@@ -3,7 +3,9 @@ import random
 import logging
 import environ
 import string
+from datetime import datetime, timedelta
 
+verification_codes = {}
 # 로깅 설정
 logger = logging.getLogger(__name__)
 
@@ -39,7 +41,7 @@ class EmailService:
         environ.Env.read_env()  # .env 파일 읽기
 
         # 이메일 제목 및 내용 설정
-        subject = "TORO 인증 코드 전송"
+        subject = "TORO email verification"
         message = f"인증번호: {verification_code}"
         from_email = env("EMAIL")
 
@@ -48,9 +50,32 @@ class EmailService:
             send_mail(subject, message, from_email, [email])
             logger.info(f"Verification email sent successfully to {email}.")
 
+            expiration_time = datetime.now() + timedelta(minutes=10)
+            verification_codes[email] = {'code': verification_code, 'expires_at': expiration_time}
+
             # 인증 코드만 반환
             return verification_code
         except Exception as e:
             # 오류가 발생하면 로그에 추가
             logger.error(f"Email sending failed for {email}: {e}")
             raise Exception(f"Email sending failed: {e}")
+
+
+    def verify_code(self, email, code):
+            """
+            이메일과 인증번호를 비교하여 유효성 검사를 합니다.
+
+            Args:
+                email (str): 인증할 이메일 주소
+                code (str): 사용자 입력 인증 코드
+
+            Returns:
+                bool: 인증 성공 여부
+            """
+            stored_data = verification_codes.get(email)
+            
+            if stored_data:
+                if stored_data['code'] == code and stored_data['expires_at'] > datetime.now():
+                    del verification_codes[email]  # 인증 성공 시 메모리에서 삭제
+                    return True
+            return False
