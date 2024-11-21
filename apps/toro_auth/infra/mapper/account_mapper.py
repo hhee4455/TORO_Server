@@ -1,12 +1,11 @@
-from apps.toro_auth.domain.entity.account import Account
+# apps/toro_auth/infra/mapper/account_mapper.py
+from apps.toro_auth.domain.entity.account import Account as DomainAccount
 from apps.toro_auth.infra.models.account_model import AccountModel
 
 class AccountMapper:
-    """ Account ORM 모델과 도메인 엔티티 간 변환 """
-
     @staticmethod
-    def to_entity(account_model: AccountModel) -> Account:
-        return Account(
+    def to_domain(account_model: AccountModel) -> DomainAccount:
+        return DomainAccount(
             id=account_model.id,
             email=account_model.email,
             password=account_model.password,
@@ -18,14 +17,14 @@ class AccountMapper:
         )
 
     @staticmethod
-    def from_entity(account: Account) -> AccountModel:
+    def to_model(domain_account: DomainAccount) -> AccountModel:
         return AccountModel(
-            id=account.id,
-            email=account.email,
-            password=account.password,
-            name=account.name,
-            date_joined=account.date_joined,
-            is_staff=account.is_staff,
-            phone=account.phone,
-            verification_code=account.verification_code
+            id=domain_account.id,
+            email=domain_account.email,
+            password=domain_account.password,
+            name=domain_account.name,
+            date_joined=domain_account.date_joined,
+            is_staff=domain_account.is_staff,
+            phone=domain_account.phone,
+            verification_code=domain_account.verification_code
         )

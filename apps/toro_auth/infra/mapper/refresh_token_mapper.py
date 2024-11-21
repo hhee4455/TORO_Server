@@ -1,5 +1,6 @@
 from apps.toro_auth.domain.entity.refresh_token import RefreshToken
 from apps.toro_auth.infra.models.refresh_token_model import RefreshTokenModel
+from apps.toro_auth.infra.models.account_model import AccountModel
 
 class RefreshTokenMapper:
     """ RefreshToken 모델과 도메인 엔티티 간 변환 """
