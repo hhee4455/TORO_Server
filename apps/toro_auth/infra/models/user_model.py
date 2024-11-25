@@ -1,6 +1,4 @@
 from django.db import models
-from datetime import datetime
-from apps.toro_auth.domain.entity.user import User
 from apps.toro_auth.infra.models.account_model import AccountModel
 from uuid import uuid4
 
@@ -11,7 +9,7 @@ class UserModel(models.Model):
     profile_picture = models.URLField(blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     is_public = models.BooleanField(default=False)
-    last_seen = models.DateTimeField(default=datetime.now)
+    last_seen = models.DateTimeField(auto_now_add=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     available_for_work = models.BooleanField(default=False)
     follower_count = models.IntegerField(default=0)

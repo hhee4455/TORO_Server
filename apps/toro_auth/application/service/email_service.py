@@ -3,7 +3,8 @@ import random
 import logging
 import environ
 import string
-from datetime import datetime, timedelta
+from django.utils import timezone
+from datetime import timedelta
 
 verification_codes = {}
 # 로깅 설정
@@ -50,7 +51,7 @@ class EmailService:
             send_mail(subject, message, from_email, [email])
             logger.info(f"Verification email sent successfully to {email}.")
 
-            expiration_time = datetime.now() + timedelta(minutes=10)
+            expiration_time = timezone.now() + timedelta(minutes=10)
             verification_codes[email] = {'code': verification_code, 'expires_at': expiration_time}
 
             # 인증 코드만 반환
@@ -75,7 +76,7 @@ class EmailService:
             stored_data = verification_codes.get(email)
             
             if stored_data:
-                if stored_data['code'] == code and stored_data['expires_at'] > datetime.now():
+                if stored_data['code'] == code and stored_data['expires_at'] > timezone.now():
                     del verification_codes[email]  # 인증 성공 시 메모리에서 삭제
                     return True
             return False

@@ -7,6 +7,7 @@ from apps.toro_auth.infra.repository_impl.refresh_token_repository_impl import R
 from apps.toro_auth.infra.repository_impl.account_repository_impl import AccountRepositoryImpl
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny
+from drf_yasg.utils import swagger_auto_schema
 
 class SignupView(APIView):
     """
@@ -15,6 +16,12 @@ class SignupView(APIView):
 
     permission_classes = [AllowAny]
 
+    @swagger_auto_schema( 
+        request_body=SignupRequestSerializer, 
+        responses={201: SignupResponseSerializer},
+        operation_summary="회원가입",
+        operation_description="회원가입을 요청하는 API입니다."
+    )
     def post(self, request, *args, **kwargs):
         # 요청 본문에서 데이터 직렬화
         serializer = SignupRequestSerializer(data=request.data)
