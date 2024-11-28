@@ -1,47 +1,27 @@
-from uuid import uuid4
-from django.utils import timezone
-from apps.toro_auth.domain.repository.account_repository import AccountRepository
-from apps.toro_auth.domain.repository.refresh_token_repository import RefreshTokenRepository
-from apps.toro_auth.domain.entity.refresh_token import RefreshToken
-import secrets  # 안전한 랜덤 토큰 생성
+from apps.toro_auth.application.repositories.account_repository import AccountRepository
+from apps.toro_auth.application.repositories.refresh_token_repository import RefreshTokenRepository
+from rest_framework.exceptions import ValidationError
+import secrets 
 
 class SignupService:
-    def __init__(self, refresh_token_repository: RefreshTokenRepository, account_repository: AccountRepository):
-        self.account_repository = account_repository
-        self.refresh_token_repository = refresh_token_repository
 
-    def signup_user(self, email: str, password: str, name: str) -> dict:
+    def signup_user(self, email, password, name) -> dict:
         """
-        새로운 사용자 회원가입을 처리합니다.
-        이메일 중복 확인 후 계정을 생성하고, 리프레시 토큰을 생성합니다.
-
-        Args:
-            email (str): 사용자의 이메일
-            password (str): 사용자의 비밀번호
-            name (str): 사용자의 이름
-
-        Returns:
-            dict: 회원가입 처리 결과 및 토큰 정보
+        사용자 회원가입 처리
         """
         # 이메일 중복 확인 및 사용자 생성
-        account = self.account_repository.create(email=email, password=password, name=name)
 
-        # 리프레시 토큰 값 생성 (안전한 랜덤 값 사용)
-        refresh_token_value = secrets.token_urlsafe(32)  # 32 바이트 길이의 안전한 랜덤 토큰 생성
-
-        # 리프레시 토큰 생성
-        refresh_token = self.refresh_token_repository.create(
-            token=refresh_token_value,  # 생성된 리프레시 토큰 값 사용
-            account_id=account.id  # 생성된 계정의 ID 사용
-        )
-
+        account = AccountRepository().find_by_email(email)
+        if account:
+            raise ValidationError("이미 가입된 이메일 주소입니다.")
+        account = AccountRepository().create(email, password, name)
+         
         return {
-            "message": f"{account.name}님의 회원가입이 완료되었습니다.",
-            "access_token": "generated_access_token",  # 실제 JWT 토큰 생성 로직 필요
-            "refresh_token": refresh_token.token
+            "message": "회원가입이 완료되었습니다.",
+            "access_token": self._generate_access_token(account),
+            "refresh_token": self._generate_refresh_token()
         }
-
-
+    
     def _generate_refresh_token(self) -> str:
         """
         리프레시 토큰을 생성하는 헬퍼 메서드

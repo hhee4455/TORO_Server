@@ -3,7 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
-from apps.toro_auth.interface.serializers import EmailRequestSerializer, EmailResponseSerializer
+from apps.toro_auth.interface.serializers.serializers import EmailRequestSerializer, EmailResponseSerializer
 from apps.toro_auth.application.service.email_service import EmailService
 from rest_framework.permissions import AllowAny
 import smtplib
@@ -19,9 +19,10 @@ class EmailRequestView(APIView):
     사용자가 이메일 주소를 제공하면 해당 주소로 인증 이메일을 전송.
     """
     @swagger_auto_schema(
-        operation_description="이메일 인증 요청 API",
         request_body=EmailRequestSerializer,
-        responses={200: EmailResponseSerializer, 400: 'Bad Request'}
+        responses={200: EmailResponseSerializer, 400: 'Bad Request'},
+        operation_summary="이메일 인증(전송)",
+        operation_description="이메일 인증 요청 API",
     )
     def post(self, request, *args, **kwargs):
         serializer = EmailRequestSerializer(data=request.data)

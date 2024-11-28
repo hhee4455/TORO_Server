@@ -1,7 +1,7 @@
 # apps/toro_auth/infra/mapper/user_mapper.py
 from apps.toro_auth.domain.entity.user import User
-from apps.toro_auth.infra.models.user_model import UserModel
-from apps.toro_auth.infra.models.account_model import AccountModel
+from apps.toro_auth.infra.orm.models.user_model import UserModel
+from apps.toro_auth.infra.orm.models.account_model import AccountModel
 
 class UserMapper:
     """ User 모델과 도메인 엔티티 간 변환 """

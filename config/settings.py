@@ -89,7 +89,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'toro_db',
-        'USER ': 'toro_admin',
+        'USER': 'toro_admin',
         'PASSWORD': 'toro_pwd123!',
         'HOST': 'localhost',
         'PORT': 5432,

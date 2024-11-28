@@ -1,15 +1,17 @@
 from apps.toro_auth.domain.entity.refresh_token import RefreshToken
-from apps.toro_auth.domain.repository.refresh_token_repository import RefreshTokenRepository
-from apps.toro_auth.infra.models.refresh_token_model import RefreshTokenModel
+from apps.toro_auth.application.repositories.refresh_token_repository import RefreshTokenRepository
+from apps.toro_auth.infra.orm.models.refresh_token_model import RefreshTokenModel
+from typing import Optional
 
 class RefreshTokenRepositoryImpl(RefreshTokenRepository):
-    def save(self, refresh_token: RefreshToken):
+    def save(self, refresh_token: RefreshToken) -> None:
         """
         리프레시 토큰을 저장합니다.
         
         Args:
             refresh_token (RefreshToken): 리프레시 토큰 객체
         """
+        # 리프레시 토큰 객체를 저장
         refresh_token_model = RefreshTokenModel(
             id=refresh_token.id,
             token=refresh_token.token,
@@ -40,7 +42,7 @@ class RefreshTokenRepositoryImpl(RefreshTokenRepository):
             account_id=refresh_token_model.account_id
         )
 
-    def find_by_token(self, token: str) -> RefreshToken:
+    def find_by_token(self, token: str) -> Optional[RefreshToken]:
         """
         리프레시 토큰을 통해 해당 토큰을 찾습니다.
         
@@ -48,7 +50,7 @@ class RefreshTokenRepositoryImpl(RefreshTokenRepository):
             token (str): 리프레시 토큰
         
         Returns:
-            RefreshToken: 리프레시 토큰 객체
+            Optional[RefreshToken]: 리프레시 토큰 객체 또는 None
         """
         try:
             refresh_token_model = RefreshTokenModel.objects.get(token=token)

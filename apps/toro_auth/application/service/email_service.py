@@ -38,13 +38,10 @@ class EmailService:
         """
         verification_code = self.generate_verification_code()
 
-        env = environ.Env()
-        environ.Env.read_env()  # .env 파일 읽기
-
         # 이메일 제목 및 내용 설정
         subject = "TORO email verification"
         message = f"인증번호: {verification_code}"
-        from_email = env("EMAIL")
+        from_email = "hhee445567@gmail.com"
 
         try:
             # 이메일 발송

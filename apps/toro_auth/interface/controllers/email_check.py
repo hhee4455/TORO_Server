@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from apps.toro_auth.application.service.email_service import EmailService
 from rest_framework.permissions import AllowAny
+from drf_yasg.utils import swagger_auto_schema
 
 class CheckCodeView(APIView):
     """
@@ -11,7 +12,10 @@ class CheckCodeView(APIView):
     """
 
     permission_classes = [AllowAny]
-    
+    @swagger_auto_schema(
+        operation_summary="이메일 인증(확인)",
+        operation_description="이메일 확인 요청 API",
+    )
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
         code = request.data.get('code')
