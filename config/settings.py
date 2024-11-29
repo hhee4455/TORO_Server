@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     # jwt
     'rest_framework_simplejwt',
 
+    # injector
+    'django_injector',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +152,4 @@ EMAIL_HOST_USER = env("EMAIL")
 EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

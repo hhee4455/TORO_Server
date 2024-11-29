@@ -11,7 +11,6 @@ class RefreshTokenRepositoryImpl(RefreshTokenRepository):
         Args:
             refresh_token (RefreshToken): 리프레시 토큰 객체
         """
-        # 리프레시 토큰 객체를 저장
         refresh_token_model = RefreshTokenModel(
             id=refresh_token.id,
             token=refresh_token.token,

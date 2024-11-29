@@ -1,12 +1,11 @@
 from abc import ABC, abstractmethod
-from uuid import UUID
 from apps.toro_auth.domain.entity.account import Account
 
 class AccountRepository(ABC):
     """
     계정과 관련된 데이터 접근 인터페이스.
     """
-    
+
     @abstractmethod
     def create(self, email: str, password: str, name: str) -> Account:
         """

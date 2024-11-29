@@ -64,3 +64,6 @@ venv/
 .idea
 .vscode
 /static/
+# migrations 모든 파일
+*/migrations/*
+migrations/
