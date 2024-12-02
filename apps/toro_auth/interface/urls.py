@@ -2,7 +2,7 @@ from django.urls import path
 from apps.toro_auth.interface.controllers.email_send import EmailRequestView
 from apps.toro_auth.interface.controllers.email_check import CheckCodeView
 from apps.toro_auth.interface.controllers.signup import SignupView
-from injector import Injector
+
 
 urlpatterns = [
     path('send-code', EmailRequestView.as_view(), name='send_code'),  # 이메일 인증 요청
