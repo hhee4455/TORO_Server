@@ -49,12 +49,6 @@ INSTALLED_APPS = [
     # jwt
     'rest_framework_simplejwt',
 
-    # injector
-    'django_injector',
-]
-
-INJECTOR_MODULES = [
-    "apps.toro_auth.config.app_module.AppModule",  # AppModule의 경로에 따라 수정
 ]
 
 MIDDLEWARE = [

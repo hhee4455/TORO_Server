@@ -16,5 +16,13 @@ class SignupRequestSerializer(serializers.Serializer):
 class SignupResponseSerializer(serializers.Serializer):
     success = serializers.IntegerField()
     message = serializers.CharField()
+
+class LoginRequestSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(write_only=True, required=True, min_length=8)
+
+class LoginResponseSerializer(serializers.Serializer):
+    success = serializers.IntegerField()
+    message = serializers.CharField()
     access_token = serializers.CharField()
     refresh_token = serializers.CharField()

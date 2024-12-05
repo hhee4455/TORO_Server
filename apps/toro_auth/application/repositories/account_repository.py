@@ -14,3 +14,8 @@ class AccountRepository(ABC):
     def find_by_email(self, email: str) -> Optional[Account]:
         """이메일로 사용자를 찾습니다."""
         pass
+
+    @abstractmethod
+    def find_by_email_and_password(self, email: str, password: str) -> Optional[Account]:
+        """이메일과 비밀번호로 사용자를 찾습니다."""
+        pass

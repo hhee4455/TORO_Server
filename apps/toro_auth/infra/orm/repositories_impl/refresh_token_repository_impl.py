@@ -16,7 +16,7 @@ class RefreshTokenRepositoryImpl(RefreshTokenRepository):
         """새로운 리프레시 토큰 생성 및 저장."""
         refresh_token_model = RefreshTokenModel.objects.create(
             token=token,
-            account_id=account_id
+            account_id=account_id  
         )
         return RefreshTokenMapper.to_domain(refresh_token_model)
 

@@ -21,3 +21,13 @@ class AccountRepositoryImpl(AccountRepository):
             return AccountMapper.to_domain(account_model)
         except AccountModel.DoesNotExist:
             return None
+        
+    def find_by_email_and_password(self, email: str, password: str) -> Optional[Account]:
+        """이메일과 비밀번호로 사용자 조회."""
+        try:
+            account_model = AccountModel.objects.get(email=email)
+            if not account_model.check_password(password):
+                return None
+            return AccountMapper.to_domain(account_model)
+        except AccountModel.DoesNotExist:
+            return None

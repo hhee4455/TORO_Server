@@ -16,3 +16,7 @@ class AccountModel(models.Model):
 
     def __str__(self):
         return self.email
+    
+    def check_password(self, raw_password: str) -> bool:
+        return raw_password == self.password
+        

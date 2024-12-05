@@ -10,4 +10,5 @@ class ToroAuthConfig(AppConfig):
         container = Container()
         container.wire(modules=[
             "apps.toro_auth.interface.controllers.signup",  # 필요한 모듈 추가
+            "apps.toro_auth.interface.controllers.login",
         ])
