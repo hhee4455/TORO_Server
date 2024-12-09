@@ -1,6 +1,6 @@
-from src.domain.auth.entity.social_account import SocialAccount
-from src.infrastructure.auth.orm.models.social_account_model import SocialAccountModel
-from src.infrastructure.auth.orm.models.account_model import AccountModel
+from src.domain.toro_auth.entity.social_account import SocialAccount
+from src.infrastructure.toro_auth.orm.models.social_account_model import SocialAccountModel
+from src.infrastructure.toro_auth.orm.models.account_model import AccountModel
 
 
 class SocialAccountMapper:

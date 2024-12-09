@@ -1,7 +1,7 @@
-from src.domain.auth.entity.account import Account
-from src.application.auth.repository.account_repository import AccountRepository
-from src.infrastructure.auth.orm.models.account_model import AccountModel
-from src.infrastructure.auth.orm.mapper.account_mapper import AccountMapper
+from src.domain.toro_auth.entity.account import Account
+from src.application.toro_auth.repository.account_repository import AccountRepository
+from src.infrastructure.toro_auth.orm.models.account_model import AccountModel
+from src.infrastructure.toro_auth.orm.mapper.account_mapper import AccountMapper
 from django.contrib.auth.hashers import make_password
 from typing import Optional
 

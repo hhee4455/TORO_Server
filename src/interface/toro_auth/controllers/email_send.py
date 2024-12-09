@@ -3,8 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
-from apps.toro_auth.interface.serializers import EmailRequestSerializer, EmailResponseSerializer
-from apps.toro_auth.application.service.email_service import EmailService
+from src.application.toro_auth.service.email_service import EmailService
+from src.interface.toro_auth.serializers import EmailRequestSerializer, EmailResponseSerializer
 from rest_framework.permissions import AllowAny
 import smtplib
 

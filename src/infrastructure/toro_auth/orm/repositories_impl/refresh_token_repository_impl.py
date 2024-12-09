@@ -1,8 +1,8 @@
 from typing import Optional
-from src.domain.auth.entity.refresh_token import RefreshToken
-from src.application.auth.repository.refresh_token_repository import RefreshTokenRepository
-from src.infrastructure.auth.orm.mapper.refresh_token_mapper import RefreshTokenMapper
-from src.infrastructure.auth.orm.models.refresh_token_model import RefreshTokenModel
+from src.domain.toro_auth.entity.refresh_token import RefreshToken
+from src.application.toro_auth.repository.refresh_token_repository import RefreshTokenRepository
+from src.infrastructure.toro_auth.orm.mapper.refresh_token_mapper import RefreshTokenMapper
+from src.infrastructure.toro_auth.orm.models.refresh_token_model import RefreshTokenModel
 
 class RefreshTokenRepositoryImpl(RefreshTokenRepository):
     """RefreshTokenRepository의 구현체."""

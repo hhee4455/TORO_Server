@@ -1,8 +1,8 @@
 from django.urls import path
-from apps.toro_auth.interface.controllers.email_send import EmailRequestView
-from apps.toro_auth.interface.controllers.email_check import CheckCodeView
-from apps.toro_auth.interface.controllers.signup import SignupView
-from apps.toro_auth.interface.controllers.login import LoginView
+from src.interface.toro_auth.controllers.email_check import CheckCodeView
+from src.interface.toro_auth.controllers.email_send import EmailRequestView
+from src.interface.toro_auth.controllers.signup import SignupView
+from src.interface.toro_auth.controllers.login import LoginView
 
 
 

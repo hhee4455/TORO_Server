@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.domain.auth.entity.refresh_token import RefreshToken
+from src.domain.toro_auth.entity.refresh_token import RefreshToken
 
 class RefreshTokenRepository(ABC):
     """

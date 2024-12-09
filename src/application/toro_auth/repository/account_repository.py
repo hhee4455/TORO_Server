@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Optional
-from src.domain.auth.entity.account import Account
+from src.domain.toro_auth.entity.account import Account
 
 class AccountRepository(ABC):
     """계정과 관련된 데이터 접근 인터페이스."""

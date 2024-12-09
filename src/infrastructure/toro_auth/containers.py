@@ -1,8 +1,8 @@
 from dependency_injector import containers, providers
-from src.infrastructure.auth.orm.repositories_impl.account_repository_impl import AccountRepositoryImpl
-from src.infrastructure.auth.orm.repositories_impl.refresh_token_repository_impl import RefreshTokenRepositoryImpl
-from src.application.auth.service.signup_service import SignupService
-from src.application.auth.service.login_service import LoginService
+from src.infrastructure.toro_auth.orm.repositories_impl.account_repository_impl import AccountRepositoryImpl
+from src.infrastructure.toro_auth.orm.repositories_impl.refresh_token_repository_impl import RefreshTokenRepositoryImpl
+from src.application.toro_auth.service.signup_service import SignupService
+from src.application.toro_auth.service.login_service import LoginService
 
 class Container(containers.DeclarativeContainer):
     """DI 컨테이너는 infra에 위치."""
