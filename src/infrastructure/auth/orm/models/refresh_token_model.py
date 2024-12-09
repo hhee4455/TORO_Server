@@ -1,5 +1,5 @@
 from django.db import models
-from apps.toro_auth.infra.orm.models.account_model import AccountModel
+from src.infrastructure.auth.orm.models.account_model import AccountModel
 
 from uuid import uuid4
 

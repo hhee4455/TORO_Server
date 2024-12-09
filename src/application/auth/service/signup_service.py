@@ -1,5 +1,5 @@
 from rest_framework.exceptions import ValidationError
-from apps.toro_auth.application.repositories.account_repository import AccountRepository
+from src.application.auth.repository.account_repository import AccountRepository
 
 class SignupService:
     """회원가입 로직을 처리하는 서비스 클래스."""

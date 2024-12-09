@@ -2,8 +2,8 @@ import jwt
 import secrets
 from datetime import datetime, timedelta
 from rest_framework.exceptions import ValidationError
-from apps.toro_auth.application.repositories.account_repository import AccountRepository
-from apps.toro_auth.application.repositories.refresh_token_repository import RefreshTokenRepository
+from src.application.auth.repository.account_repository import AccountRepository
+from src.application.auth.repository.refresh_token_repository import RefreshTokenRepository
 from django.contrib.auth import hashers
 
 SECRET_KEY = secrets.token_hex(32)

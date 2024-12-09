@@ -34,9 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 프로젝트 앱
-    'apps.toro_auth',  # 사용자 인증 관련 앱
-
     # Django REST Framework
     'rest_framework',
 
@@ -88,7 +85,7 @@ DATABASES = {
     # postresql database
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'toro_db',
+        'NAME': 'toro_test',
         'USER': 'toro_admin',
         'PASSWORD': 'toro_pwd123!',
         'HOST': 'localhost',

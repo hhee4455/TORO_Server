@@ -1,6 +1,7 @@
-from apps.toro_auth.domain.entity.social_account import SocialAccount
-from apps.toro_auth.infra.orm.models.social_account_model import SocialAccountModel
-from apps.toro_auth.infra.orm.models.account_model import AccountModel
+from src.domain.auth.entity.social_account import SocialAccount
+from src.infrastructure.auth.orm.models.social_account_model import SocialAccountModel
+from src.infrastructure.auth.orm.models.account_model import AccountModel
+
 
 class SocialAccountMapper:
     """ SocialAccount 모델과 도메인 엔티티 간 변환 """

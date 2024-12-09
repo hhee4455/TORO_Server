@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from typing import Optional
 from django.utils import timezone
 from uuid import UUID
 
