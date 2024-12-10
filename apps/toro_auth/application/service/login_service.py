@@ -17,15 +17,16 @@ class LoginService:
         if not account or not self._check_password(password, account.password):
             raise ValueError("Invalid email or password")
 
-        # 리프레시 토큰 생성 및 저장
         refresh_token = secrets.token_urlsafe(64)
-        self.refresh_token_repository.save(refresh_token, str(account.id), ttl=60 * 60 * 24 * 7)  # 7일 TTL
+        try:
+            self.refresh_token_repository.save(refresh_token, str(account.id), ttl=60 * 60 * 24 * 7)
+        except Exception as e:
+            raise Exception(f"Error saving refresh token: {str(e)}")
 
         return {
             "access_token": self._create_access_token(account),
             "refresh_token": refresh_token
         }
-
     def _check_password(self, raw_password: str, hashed_password: str) -> bool:
         from django.contrib.auth.hashers import check_password
         return check_password(raw_password, hashed_password)

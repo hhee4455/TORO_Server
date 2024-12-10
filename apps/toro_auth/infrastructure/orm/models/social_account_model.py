@@ -1,5 +1,4 @@
 from django.db import models
-from apps.toro_auth.domain.entity.social_account import SocialAccount
 from apps.toro_auth.infrastructure.orm.models.account_model import AccountModel
 from uuid import uuid4
 

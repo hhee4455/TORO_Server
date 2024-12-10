@@ -2,7 +2,7 @@ from django.apps import AppConfig
 
 class ToroAuthConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'apps.toro_auth'
+    name = 'apps.toro_auth.interface'
 
     def ready(self):
         """Django 앱이 초기화된 후에 DI 컨테이너 초기화."""

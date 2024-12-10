@@ -1,9 +1,16 @@
 from pathlib import Path
 import environ
+import os
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-2(i)nvc1fn%1r71*4l@ca_6!tr7lpk(l23@(v)$8v230(sk8!4'
+# environ 초기화
+env = environ.Env()
+
+# .env 파일 읽기
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 
 DEBUG = True
 
@@ -35,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 프로젝트 앱
-    'apps.toro_auth',  # 사용자 인증 관련 앱
+    'apps.toro_auth.interface', 
 
     # Django REST Framework
     'rest_framework',
@@ -139,10 +146,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-# 환경 설정 읽기
-env = environ.Env()
-environ.Env.read_env() 
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
@@ -151,3 +154,5 @@ EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+SECRET_KEY = env("SECRET_KEY")
+JWT_SECRET_KEY = env("JWT_SECRET_KEY")
