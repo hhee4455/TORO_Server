@@ -2,7 +2,7 @@ from dependency_injector import containers, providers
 from apps.toro_auth.application.service.signup_service import SignupService
 from apps.toro_auth.application.service.login_service import LoginService
 from apps.toro_auth.infrastructure.orm.repositories_impl.account_repository_impl import AccountRepositoryImpl
-from apps.toro_auth.infrastructure.orm.repositories_impl.refresh_token_repository_impl import RefreshTokenRepositoryImpl
+from apps.toro_auth.infrastructure.redis.refresh_token_manager import RefreshTokenRepositoryImpl
 
 class Container(containers.DeclarativeContainer):
     account_repository = providers.Factory(AccountRepositoryImpl)
