@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 from dependency_injector.wiring import inject, Provide
-from apps.toro_auth.infra.containers import Container
+from apps.toro_auth.di.containers import Container
 from apps.toro_auth.interface.serializers import SignupRequestSerializer, SignupResponseSerializer
 from apps.toro_auth.application.service.signup_service import SignupService
 from rest_framework.permissions import AllowAny

@@ -1,5 +1,5 @@
 from apps.toro_auth.domain.entity.account import Account as DomainAccount
-from apps.toro_auth.infra.orm.models.account_model import AccountModel
+from apps.toro_auth.infrastructure.orm.models.account_model import AccountModel
 
 class AccountMapper:
     @staticmethod

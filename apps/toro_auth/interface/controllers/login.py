@@ -5,7 +5,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework import status
 from dependency_injector.wiring import inject, Provide
-from apps.toro_auth.infra.containers import Container
+from apps.toro_auth.di.containers import Container
 from apps.toro_auth.application.service.login_service import LoginService
 
 
