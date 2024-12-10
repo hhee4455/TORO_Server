@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from dependency_injector.wiring import inject, Provide
 from src.application.toro_auth.service.login_service import LoginService
-from src.infrastructure.toro_auth.containers import Container
+from src.di.containers import Container
 from src.interface.toro_auth.serializers import LoginRequestSerializer, LoginResponseSerializer
 class LoginView(APIView):
     permission_classes = [AllowAny]

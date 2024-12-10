@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # 내 앱
-    'src.infrastructure.toro_auth',
+    'src.interface.toro_auth',
 
     # Django REST Framework
     'rest_framework',
