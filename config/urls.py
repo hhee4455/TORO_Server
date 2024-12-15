@@ -20,6 +20,7 @@ schema_view = get_schema_view(
 urlpatterns = [
     # Django REST Framework URL 패턴 추가
    path('api/', include('apps.toro_auth.interface.urls')),
+   path('api/', include('apps.toro_user.interface.urls')),
 
     # Swagger URL 패턴 추가
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

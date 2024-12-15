@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # 프로젝트 앱
     'apps.toro_auth.interface', 
+    'apps.toro_user.interface',
 
     # Django REST Framework
     'rest_framework',
@@ -156,3 +157,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 SECRET_KEY = env("SECRET_KEY")
 JWT_SECRET_KEY = env("JWT_SECRET_KEY")
+
+AWS_ACCESS = env("AWS_ACCESS")
+AWS_SECRET = env("AWS_SECRET")
+AWS_REGION = env("AWS_REGION")
+AWS_BUCKET = env("AWS_BUCKET")
