@@ -4,7 +4,10 @@ import logging
 import environ
 import string
 from django.utils import timezone
+from rest_framework.exceptions import ValidationError
 from datetime import timedelta
+
+from apps.toro_auth.application.repositories.account_repository import AccountRepository
 
 verification_codes = {}
 # 로깅 설정
@@ -13,16 +16,17 @@ logger = logging.getLogger(__name__)
 class EmailService:
     """
     이메일 관련 작업을 담당하는 서비스 클래스.
-    이메일 인증 코드를 생성하고, 이메일을 발송하는 기능을 제공합니다.
     """
-    
+
+    def __init__(self, account_repository : AccountRepository):
+        """
+        레포지토리 인스턴스를 초기화합니다.
+        """
+        self.account_repository = account_repository
+
     def generate_verification_code(self):
         """
         인증 코드를 생성하는 메서드.
-        6자리의 숫자로 된 인증 코드를 생성합니다.
-        
-        Returns:
-            str: 생성된 인증 코드 (6자리)
         """
         # 6자리 인증 코드 생성 (숫자만 사용)
         verification_code = ''.join(random.choices(string.digits, k=6))
@@ -30,12 +34,13 @@ class EmailService:
 
     def send_email(self, email):
         """
-        인증 이메일을 발송하는 메서드.
-        이메일로 인증 코드를 발송합니다.
-
-        Args:
-            email (str): 이메일 주소
+        중복된 이메일이 없을 때 인증 이메일을 발송하는 메서드.
         """
+
+        # 이메일 중복 확인
+        if self.account_repository.find_by_email(email) is not None:
+            raise ValidationError("이미 등록된 이메일입니다.")
+
         verification_code = self.generate_verification_code()
 
         # 이메일 제목 및 내용 설정
@@ -58,22 +63,14 @@ class EmailService:
             logger.error(f"Email sending failed for {email}: {e}")
             raise Exception(f"Email sending failed: {e}")
 
-
     def verify_code(self, email, code):
-            """
-            이메일과 인증번호를 비교하여 유효성 검사를 합니다.
+        """
+        이메일과 인증번호를 비교하여 유효성 검사를 합니다.
+        """
+        stored_data = verification_codes.get(email)
 
-            Args:
-                email (str): 인증할 이메일 주소
-                code (str): 사용자 입력 인증 코드
-
-            Returns:
-                bool: 인증 성공 여부
-            """
-            stored_data = verification_codes.get(email)
-            
-            if stored_data:
-                if stored_data['code'] == code and stored_data['expires_at'] > timezone.now():
-                    del verification_codes[email]  # 인증 성공 시 메모리에서 삭제
-                    return True
-            return False
+        if stored_data:
+            if stored_data['code'] == code and stored_data['expires_at'] > timezone.now():
+                del verification_codes[email]  # 인증 성공 시 메모리에서 삭제
+                return True
+        return False

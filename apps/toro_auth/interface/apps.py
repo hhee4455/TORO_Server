@@ -12,4 +12,6 @@ class ToroAuthConfig(AppConfig):
         container.wire(modules=[
             "apps.toro_auth.interface.controllers.signup",  
             "apps.toro_auth.interface.controllers.login",
+            "apps.toro_auth.interface.controllers.email_send",
+            "apps.toro_auth.interface.controllers.email_check",
         ])
