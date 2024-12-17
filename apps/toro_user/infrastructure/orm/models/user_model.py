@@ -16,9 +16,8 @@ class UserModel(models.Model):
     fieldwork_availability = models.CharField(max_length=100, blank=True, null=True)
     field = models.CharField(max_length=100, blank=True, null=True)
     is_active = models.BooleanField(default=True)
-
-    account = models.ForeignKey(AccountModel, on_delete=models.CASCADE, related_name='user_models', null=True)
+    account = models.ForeignKey(AccountModel, on_delete=models.CASCADE, null=True)
 
     class Meta:
-        app_label = 'toro_auth'
+        app_label = 'toro_user'
         db_table = 'user'

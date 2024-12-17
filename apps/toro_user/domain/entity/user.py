@@ -34,3 +34,4 @@ class User:
     fieldwork_availability: Optional[str] = None
     field: Optional[str] = None
     is_active: bool = True
+    account_id: Optional[UUID] = None

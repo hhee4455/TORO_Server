@@ -1,0 +1,1 @@
+from apps.toro_user.infrastructure.orm.models.user_model import UserModel

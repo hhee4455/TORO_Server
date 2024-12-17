@@ -10,7 +10,7 @@ class RefreshTokenRepository(ABC):
         pass
 
     @abstractmethod
-    def find_by_token(self, token: str) -> Optional[str]:
+    def find_user_id_by_token(self, token: str) -> Optional[str]:
         """리프레시 토큰으로 사용자 ID를 조회."""
         pass
 

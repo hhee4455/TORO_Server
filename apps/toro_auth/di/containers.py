@@ -30,5 +30,5 @@ class Container(containers.DeclarativeContainer):
         LoginService,
         account_repository=account_repository,
         refresh_token_repository=refresh_token_repository,
-        secret_key=settings.SECRET_KEY  # settings에서 가져오기
+        secret_key=settings.SECRET_KEY,
     )

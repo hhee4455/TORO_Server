@@ -8,7 +8,7 @@ class UserRequestSerializer(serializers.Serializer):
     available_for_work = serializers.BooleanField(required=False, default=False)
     fieldwork_availability = serializers.CharField(required=False, max_length=100, allow_blank=True)
     field = serializers.CharField(required=False, max_length=100, allow_blank=True)
-    profile_picture = serializers.URLField(required=False)  # S3 URL 저장
+    profile_picture = serializers.URLField(required=False) 
 
 
 class UserResponseSerializer(serializers.Serializer):
@@ -22,6 +22,6 @@ class UserResponseSerializer(serializers.Serializer):
     follower_count = serializers.IntegerField()
     fieldwork_availability = serializers.CharField(allow_blank=True, required=False)
     field = serializers.CharField(allow_blank=True, required=False)
-    profile_picture = serializers.URLField(allow_blank=True, required=False)  # S3 URL 반환
+    profile_picture = serializers.URLField(allow_blank=True, required=False) 
     is_active = serializers.BooleanField()
     account_id = serializers.UUIDField()
