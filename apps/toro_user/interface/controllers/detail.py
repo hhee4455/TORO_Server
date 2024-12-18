@@ -4,10 +4,10 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from drf_yasg.utils import swagger_auto_schema
 
-from apps.toro_user.application.service.user_service import UserService
+from apps.toro_user.application.service.detail_service import DetailService
 
 
-class UserView(APIView):
+class DetailView(APIView):
     """
     사용자 정보를 조회하는 API 뷰.
     사용자의 email을 기반으로 정보를 조회합니다.
@@ -24,7 +24,7 @@ class UserView(APIView):
         if not email:
             return Response({'error': '이메일을 입력하세요.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        user_service = UserService()
+        user_service = DetailService()
         user_data = user_service.get_user_by_email(email)
 
         if user_data:

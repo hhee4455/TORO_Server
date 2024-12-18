@@ -1,9 +1,9 @@
 from apps.toro_user.domain.entity.user import User
 from apps.toro_user.infrastructure.orm.mapper.user_mapper import UserMapper
 from apps.toro_user.infrastructure.orm.models.user_model import UserModel
-from apps.toro_user.application.repositories.user_repository import UserRepository
+from apps.toro_user.application.repositories.detail_repository import DetailRepository
 
-class UserRepositoryImpl(UserRepository):
+class DetailRepositoryImpl(DetailRepository):
     """UserRepository 구현체: 이메일을 기준으로 사용자 조회."""
 
     def find_by_email(self, email: str) -> User:

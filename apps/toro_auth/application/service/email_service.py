@@ -1,7 +1,6 @@
 from django.core.mail import send_mail
 import random
 import logging
-import environ
 import string
 from django.utils import timezone
 from rest_framework.exceptions import ValidationError

@@ -35,7 +35,6 @@ class CheckCodeView(APIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # self.email_service 사용 (의존성 주입된 서비스)
         is_verified = self.email_service.verify_code(email, code)
 
         if is_verified:

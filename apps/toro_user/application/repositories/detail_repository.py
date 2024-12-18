@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 from apps.toro_user.domain.entity.user import User
 
-class UserRepository(ABC):
+class DetailRepository(ABC):
     """사용자 관련된 데이터 접근 인터페이스."""
 
     @abstractmethod
