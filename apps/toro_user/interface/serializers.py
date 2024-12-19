@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-class DetailRequestSerializer(serializers.Serializer):
+class UserRequestSerializer(serializers.Serializer):
     nickname = serializers.CharField(required=True, max_length=100)
     bio = serializers.CharField(required=False, allow_blank=True)
     is_public = serializers.BooleanField(required=False, default=False)
@@ -11,7 +11,7 @@ class DetailRequestSerializer(serializers.Serializer):
     profile_picture = serializers.URLField(required=False) 
 
 
-class DetailResponseSerializer(serializers.Serializer):
+class UserResponseSerializer(serializers.Serializer):
     id = serializers.UUIDField()
     nickname = serializers.CharField()
     bio = serializers.CharField(allow_blank=True, required=False)
@@ -28,3 +28,6 @@ class DetailResponseSerializer(serializers.Serializer):
 
 class ProfileRequestSerializer(serializers.Serializer):
     token = serializers.CharField(max_length=255, required=True)
+
+class ProfileResponseSerializer(serializers.Serializer):
+    profile_picture = serializers.URLField(allow_blank=True, required=False)

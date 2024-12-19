@@ -3,8 +3,8 @@ from dependency_injector import containers, providers
 from django.conf import settings  # settings 가져오기
 from apps.toro_auth.application.service.signup_service import SignupService
 from apps.toro_auth.application.service.login_service import LoginService
-from apps.toro_auth.infrastructure.orm.repositories_impl.account_repository_impl import AccountRepositoryImpl
-from apps.toro_auth.infrastructure.redis.auth_redis import RedisRepositoryImpl
+from apps.toro_auth.infrastructure.orm.adapters.account_repository_impl import AccountRepositoryImpl
+from apps.toro_auth.infrastructure.redis.token_repository_impl import TokenRepositoryImpl
 from apps.toro_auth.application.service.email_service import EmailService
 
 class Container(containers.DeclarativeContainer):
@@ -17,8 +17,8 @@ class Container(containers.DeclarativeContainer):
     )
 
     account_repository = providers.Factory(AccountRepositoryImpl)
-    redis_repository = providers.Factory(
-        RedisRepositoryImpl,
+    token_repository = providers.Factory(
+        TokenRepositoryImpl,
         redis_client=redis_client
     )
 
@@ -30,7 +30,7 @@ class Container(containers.DeclarativeContainer):
     login_service = providers.Factory(
         LoginService,
         account_repository=account_repository,
-        redis_repository=redis_repository,
+        token_repository=token_repository,
         secret_key=settings.SECRET_KEY,
     )
 

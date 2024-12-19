@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class RedisRepository(ABC):
+class TokenRepository(ABC):
     """리프레시 토큰 저장소 추상화."""
 
     @abstractmethod

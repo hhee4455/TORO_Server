@@ -11,8 +11,8 @@ class ToroUserConfig(AppConfig):
         from apps.toro_user.di.containers import Container  
         container = Container()
         container.wire(modules=[
-            "apps.toro_user.interface.controllers.detail",
-            "apps.toro_user.interface.controllers.profile",
+            'apps.toro_user.interface.controllers.user',
+            'apps.toro_user.interface.controllers.profile'
         ])
 
         """앱 초기화 시 Signals 등록"""

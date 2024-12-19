@@ -1,9 +1,9 @@
 from redis import Redis
 from typing import Optional
 from redis.exceptions import RedisError
-from apps.toro_auth.application.repositories.redis_repository import RedisRepository
+from apps.toro_auth.application.repositories.token_repository import TokenRepository
 
-class RedisRepositoryImpl(RedisRepository):
+class TokenRepositoryImpl(TokenRepository):
     """Redis를 사용하는 리프레시 토큰 저장소 구현체."""
 
     def __init__(self, redis_client: Redis, ttl: int = 60 * 60 * 24 * 7):
@@ -12,12 +12,12 @@ class RedisRepositoryImpl(RedisRepository):
         self.redis_client = redis_client
         self.ttl = ttl  # 기본 TTL: 7일
 
-    def save(self, token: str, user_id: str, ttl: int = None) -> None:
+    def save(self, token: str, account_id: str, ttl: int = None) -> None:
         """리프레시 토큰과 유저 ID를 Redis에 저장하는 함수."""
 
         key = f"refresh_token:{token}"
         try:
-            self.redis_client.set(key, user_id, ex=ttl or self.ttl)
+            self.redis_client.set(key, account_id, ex=ttl or self.ttl)
         except RedisError as e:
             raise RuntimeError(f"Failed to save refresh token: {str(e)}") from e
 

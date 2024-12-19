@@ -1,8 +1,8 @@
 from django.urls import path
-from apps.toro_user.interface.controllers.detail import DetailView
-from apps.toro_user.interface.controllers.profile import ProfileImageView
+from apps.toro_user.interface.controllers.user import UserView
+from apps.toro_user.interface.controllers.profile import ProfileView
 
 urlpatterns = [
-    path('detail', DetailView.as_view(), name='detail'),  
-    path("profile", ProfileImageView.as_view(), name="profile"),
+    path('user', UserView.as_view(), name='user'),
+    path('profile', ProfileView.as_view(), name='profile'),
 ]
