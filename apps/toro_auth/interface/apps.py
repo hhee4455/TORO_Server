@@ -14,4 +14,5 @@ class ToroAuthConfig(AppConfig):
             "apps.toro_auth.interface.controllers.login",
             "apps.toro_auth.interface.controllers.email_send",
             "apps.toro_auth.interface.controllers.email_check",
+            "apps.toro_auth.interface.controllers.logout",
         ])

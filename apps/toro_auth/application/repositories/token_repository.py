@@ -12,3 +12,8 @@ class TokenRepository(ABC):
     def delete(self, user_id: str) -> None:
         """사용자 ID로 리프레시 토큰 삭제."""
         pass
+
+    @abstractmethod
+    def get_account_id(self, token: str) -> str:
+        """리프레시 토큰에서 사용자 ID를 추출."""
+        pass 

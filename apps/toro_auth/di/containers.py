@@ -6,6 +6,7 @@ from apps.toro_auth.application.service.login_service import LoginService
 from apps.toro_auth.infrastructure.orm.adapters.account_repository_impl import AccountRepositoryImpl
 from apps.toro_auth.infrastructure.redis.token_repository_impl import TokenRepositoryImpl
 from apps.toro_auth.application.service.email_service import EmailService
+from apps.toro_auth.application.service.logout_service import LogoutService
 
 class Container(containers.DeclarativeContainer):
     # Redis 클라이언트 생성
@@ -38,4 +39,9 @@ class Container(containers.DeclarativeContainer):
     email_service = providers.Factory(
         EmailService,
         account_repository=account_repository
+    )
+
+    logout_service = providers.Factory(
+        LogoutService,
+        token_repository=token_repository
     )

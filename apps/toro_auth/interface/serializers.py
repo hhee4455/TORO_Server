@@ -2,8 +2,8 @@ from rest_framework import serializers
 
 class EmailRequestSerializer(serializers.Serializer):
     email = serializers.EmailField()
+    code = serializers.CharField(required=False, max_length=6)
     
-
 class EmailResponseSerializer(serializers.Serializer):
     success = serializers.IntegerField()
     code = serializers.CharField(required=False, max_length=6)
@@ -26,3 +26,10 @@ class LoginResponseSerializer(serializers.Serializer):
     message = serializers.CharField()
     access_token = serializers.CharField()
     refresh_token = serializers.CharField()
+
+class LogoutRequestSerializer(serializers.Serializer):
+    token = serializers.CharField(required=True)
+
+class LogoutResponseSerializer(serializers.Serializer):
+    success = serializers.IntegerField()
+    message = serializers.CharField()

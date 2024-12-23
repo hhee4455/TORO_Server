@@ -8,23 +8,22 @@ from apps.toro_auth.application.repositories.account_repository import AccountRe
 class LoginService:
     """로그인 서비스: 사용자 인증 및 토큰 생성"""
 
-    def __init__(self, account_repository: AccountRepository, token_repository: TokenRepository, secret_key: str):
-        """LoginService 초기화"""
+    ACCESS_TOKEN_EXPIRATION_HOURS = 1
+    REFRESH_TOKEN_EXPIRATION_DAYS = 7
 
+    def __init__(self, account_repository: AccountRepository, token_repository: TokenRepository, secret_key: str):
         self.account_repository = account_repository
         self.token_repository = token_repository
         self.secret_key = secret_key
 
     def login_user(self, email: str, password: str) -> dict:
-        """사용자 로그인 및 토큰 생성"""
-
         account = self.account_repository.find_by_email(email)
         if not account or not self._check_password(password, account.password):
             raise ValueError("Invalid email or password")
 
         refresh_token = secrets.token_urlsafe(64)
         try:
-            self.token_repository.save(refresh_token, str(account.id), ttl=60 * 60 * 24 * 7)
+            self.token_repository.save(refresh_token, str(account.id), ttl=self.REFRESH_TOKEN_EXPIRATION_DAYS * 24 * 60 * 60)
         except Exception as e:
             raise RuntimeError(f"Error saving refresh token: {str(e)}") from e
 
@@ -34,16 +33,12 @@ class LoginService:
         }
 
     def _check_password(self, raw_password: str, hashed_password: str) -> bool:
-        """비밀번호 검증"""
-
         return check_password(raw_password, hashed_password)
 
     def _create_access_token(self, account) -> str:
-        """Access Token 생성"""
-        
         payload = {
             "id": str(account.id),
             "email": account.email,
-            "exp": datetime.now() + timedelta(hours=1)
+            "exp": datetime.utcnow() + timedelta(hours=self.ACCESS_TOKEN_EXPIRATION_HOURS)
         }
         return jwt.encode(payload, self.secret_key, algorithm="HS256")
