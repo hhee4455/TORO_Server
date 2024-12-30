@@ -12,6 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 class ProfileView(APIView):
+    
     permission_classes = [AllowAny]
 
     @inject

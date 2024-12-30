@@ -2,24 +2,16 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
-from apps.toro_auth.application.service.email_service import EmailService
-from apps.toro_auth.interface.serializers import EmailRequestSerializer, EmailResponseSerializer
 from drf_yasg.utils import swagger_auto_schema
 from dependency_injector.wiring import inject, Provide
+
 from apps.toro_auth.di.containers import Container
+from apps.toro_auth.application.service.email_service import EmailService
+from apps.toro_auth.interface.serializers import EmailRequestSerializer, EmailResponseSerializer
 
 class CheckCodeView(APIView):
-    """
-    이메일 인증 번호 확인을 처리하는 API 뷰.
-    사용자가 입력한 인증 번호를 검증합니다.
-    """
-
-    @inject
-    def __init__(self, email_service: EmailService = Provide[Container.email_service], **kwargs):
-        super().__init__(**kwargs)
-        self.email_service = email_service
-
     permission_classes = [AllowAny]
+    email_service: EmailService = Provide[Container.email_service]
 
     @swagger_auto_schema(
         request_body=EmailRequestSerializer,

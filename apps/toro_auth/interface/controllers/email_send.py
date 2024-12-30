@@ -3,24 +3,20 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
-from apps.toro_auth.interface.serializers import EmailRequestSerializer, EmailResponseSerializer
-from apps.toro_auth.application.service.email_service import EmailService
 from rest_framework.permissions import AllowAny
 from smtplib import SMTPException
-from dependency_injector.wiring import inject, Provide
-from apps.toro_auth.di.containers import Container
+from dependency_injector.wiring import Provide
 from rest_framework.exceptions import ValidationError
 
-# 로거 설정
+from apps.toro_auth.di.containers import Container
+from apps.toro_auth.interface.serializers import EmailRequestSerializer, EmailResponseSerializer
+from apps.toro_auth.application.service.email_service import EmailService
+
 logger = logging.getLogger(__name__)
 
 class EmailRequestView(APIView):
     permission_classes = [AllowAny]
-
-    @inject
-    def __init__(self, email_service: EmailService = Provide[Container.email_service], **kwargs):
-        super().__init__(**kwargs)
-        self.email_service = email_service
+    email_service: EmailService = Provide[Container.email_service]
 
     @swagger_auto_schema(
         request_body=EmailRequestSerializer,

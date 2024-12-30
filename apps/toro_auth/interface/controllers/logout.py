@@ -3,24 +3,18 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
 import logging
-
 
 from apps.toro_auth.di.containers import Container
 from apps.toro_auth.application.service.logout_service import LogoutService
 from apps.toro_auth.interface.serializers import LogoutRequestSerializer, LogoutResponseSerializer
 
-
 logger = logging.getLogger(__name__)
 
 class LogoutView(APIView):
     permission_classes = [AllowAny]
-
-    @inject
-    def __init__(self, logout_service: LogoutService = Provide[Container.logout_service], **kwargs):
-        super().__init__(**kwargs)
-        self.logout_service = logout_service
+    logout_service: LogoutService = Provide[Container.logout_service]
 
     @swagger_auto_schema(
         request_body=LogoutRequestSerializer,

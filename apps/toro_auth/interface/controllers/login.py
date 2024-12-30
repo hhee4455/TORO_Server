@@ -3,21 +3,18 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
+import logging
+
 from apps.toro_auth.interface.serializers import LoginRequestSerializer, LoginResponseSerializer
 from apps.toro_auth.di.containers import Container
 from apps.toro_auth.application.service.login_service import LoginService
-import logging
 
 logger = logging.getLogger(__name__)
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
-
-    @inject
-    def __init__(self, login_service: LoginService = Provide[Container.login_service], **kwargs):
-        super().__init__(**kwargs)
-        self.login_service = login_service
+    login_service: LoginService = Provide[Container.login_service]
 
     @swagger_auto_schema(
         request_body=LoginRequestSerializer,

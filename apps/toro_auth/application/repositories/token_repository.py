@@ -17,3 +17,8 @@ class TokenRepository(ABC):
     def get_account_id(self, token: str) -> str:
         """리프레시 토큰에서 사용자 ID를 추출."""
         pass 
+
+    @abstractmethod
+    def validate_refresh_token(self, token: str) -> str:
+        """리프레시 토큰 유효성 검사."""
+        pass

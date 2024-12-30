@@ -3,21 +3,18 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
 from drf_yasg.utils import swagger_auto_schema
-from dependency_injector.wiring import inject, Provide
+from dependency_injector.wiring import Provide
+import logging
+
 from apps.toro_auth.di.containers import Container
 from apps.toro_auth.interface.serializers import SignupRequestSerializer, SignupResponseSerializer
 from apps.toro_auth.application.service.signup_service import SignupService
-import logging
 
 logger = logging.getLogger(__name__)
 
 class SignupView(APIView):
     permission_classes = [AllowAny]
-
-    @inject
-    def __init__(self, signup_service: SignupService = Provide[Container.signup_service], **kwargs):
-        super().__init__(**kwargs)
-        self.signup_service = signup_service
+    signup_service: SignupService = Provide[Container.signup_service]
 
     @swagger_auto_schema(
         request_body=SignupRequestSerializer,

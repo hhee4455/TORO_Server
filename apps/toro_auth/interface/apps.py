@@ -15,4 +15,6 @@ class ToroAuthConfig(AppConfig):
             "apps.toro_auth.interface.controllers.email_send",
             "apps.toro_auth.interface.controllers.email_check",
             "apps.toro_auth.interface.controllers.logout",
+            "apps.toro_auth.interface.controllers.validate",
+            "apps.toro_auth.interface.controllers.update_refresh_token",
         ])

@@ -7,6 +7,8 @@ from apps.toro_auth.infrastructure.orm.adapters.account_repository_impl import A
 from apps.toro_auth.infrastructure.redis.token_repository_impl import TokenRepositoryImpl
 from apps.toro_auth.application.service.email_service import EmailService
 from apps.toro_auth.application.service.logout_service import LogoutService
+from apps.toro_auth.application.service.validate_service import ValidateService
+from apps.toro_auth.application.service.update_refresh_token_service import UpdateRefreshTokenService
 
 class Container(containers.DeclarativeContainer):
     # Redis 클라이언트 생성
@@ -22,6 +24,7 @@ class Container(containers.DeclarativeContainer):
         TokenRepositoryImpl,
         redis_client=redis_client
     )
+
 
     signup_service = providers.Factory(
         SignupService,
@@ -44,4 +47,16 @@ class Container(containers.DeclarativeContainer):
     logout_service = providers.Factory(
         LogoutService,
         token_repository=token_repository
+    )
+
+    validate_service = providers.Factory(
+        ValidateService,
+        secret_key=settings.SECRET_KEY
+    )
+
+    update_refresh_token_service = providers.Factory(
+        UpdateRefreshTokenService,
+        account_repository=account_repository,
+        token_repository=token_repository,
+        secret_key=settings.SECRET_KEY
     )

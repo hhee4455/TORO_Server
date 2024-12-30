@@ -4,6 +4,8 @@ from apps.toro_auth.interface.controllers.email_check import CheckCodeView
 from apps.toro_auth.interface.controllers.signup import SignupView
 from apps.toro_auth.interface.controllers.login import LoginView
 from apps.toro_auth.interface.controllers.logout import LogoutView
+from apps.toro_auth.interface.controllers.validate import ValidateView
+from apps.toro_auth.interface.controllers.update_refresh_token import UpdateRefreshTokenView
 
 
 
@@ -13,4 +15,6 @@ urlpatterns = [
     path('signup', SignupView.as_view(), name='signup'), #회원가입 요청
     path('login', LoginView.as_view(), name='login'), #로그인 요청
     path('logout', LogoutView.as_view(), name='logout'), #로그아웃 요청
+    path('validate', ValidateView.as_view(), name='validate'), #토큰 검증
+    path('update-refresh-token', UpdateRefreshTokenView.as_view(), name='update_refresh_token'), #토큰 갱신
 ]
