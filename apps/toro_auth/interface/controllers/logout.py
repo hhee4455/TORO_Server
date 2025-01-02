@@ -33,7 +33,7 @@ class LogoutView(APIView):
             serializer = LogoutRequestSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
 
-            token = serializer.validated_data["token"]
+            token = serializer.validated_data["refresh_token"]
             logger.info(f"Logout attempt for token: {token}")
 
             result = self.logout_service.logout_user(token=token)

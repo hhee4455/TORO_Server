@@ -4,7 +4,6 @@ from redis.exceptions import RedisError
 from typing import Optional
 from apps.toro_auth.application.repositories.token_repository import TokenRepository
 
-
 def handle_redis_errors(func):
     """Redis 에러를 처리하는 데코레이터"""
     def wrapper(*args, **kwargs):
@@ -14,7 +13,6 @@ def handle_redis_errors(func):
             logging.error(f"Redis error in {func.__name__}: {str(e)}")
             raise RuntimeError(f"Redis operation failed: {str(e)}") from e
     return wrapper
-
 
 class TokenRepositoryImpl(TokenRepository):
     """Redis를 사용하는 리프레시 토큰 저장소 구현체."""

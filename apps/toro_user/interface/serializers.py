@@ -27,7 +27,7 @@ class UserResponseSerializer(serializers.Serializer):
     account_id = serializers.UUIDField()
 
 class ProfileRequestSerializer(serializers.Serializer):
-    token = serializers.CharField(max_length=255, required=True)
+    access_token = serializers.CharField(max_length=255, required=True)
 
 class ProfileResponseSerializer(serializers.Serializer):
     profile_picture = serializers.URLField(allow_blank=True, required=False)
