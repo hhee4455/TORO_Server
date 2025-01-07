@@ -9,6 +9,8 @@ class AccountMapper:
             email=account_model.email,
             password=account_model.password,
             name=account_model.name,
+            nickname=account_model.nickname,
+            phone=account_model.phone,
             date_joined=account_model.date_joined,
             is_staff=account_model.is_staff,
         )
@@ -20,6 +22,8 @@ class AccountMapper:
             email=domain_account.email,
             password=domain_account.password,
             name=domain_account.name,
+            nickname=domain_account.nickname,
+            phone=domain_account.phone,
             date_joined=domain_account.date_joined,
             is_staff=domain_account.is_staff,
         )

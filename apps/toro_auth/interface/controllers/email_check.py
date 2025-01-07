@@ -22,7 +22,7 @@ class CheckCodeView(APIView):
         },
         operation_summary="이메일 인증 번호 확인",
         operation_description="사용자가 입력한 이메일 인증 번호를 확인하는 API입니다.",
-        tags=["Authentication"]
+        tags=["Email"]
     )
     def post(self, request, *args, **kwargs):
         serializer = EmailRequestSerializer(data=request.data)

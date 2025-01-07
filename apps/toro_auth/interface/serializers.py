@@ -14,6 +14,8 @@ class SignupRequestSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     password = serializers.CharField(write_only=True, required=True, min_length=8)
     name = serializers.CharField(required=True, max_length=100)
+    phone = serializers.CharField(required=True)
+    nickname = serializers.CharField(required=True)
 
 class SignupResponseSerializer(serializers.Serializer):
     success = serializers.IntegerField()

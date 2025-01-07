@@ -10,11 +10,7 @@ class UserModel(models.Model):
     bio = models.TextField(blank=True, null=True)
     is_public = models.BooleanField(default=False)
     last_seen = models.DateTimeField(auto_now_add=True)
-    location = models.CharField(max_length=100, blank=True, null=True)
-    available_for_work = models.BooleanField(default=False)
     follower_count = models.IntegerField(default=0)
-    fieldwork_availability = models.CharField(max_length=100, blank=True, null=True)
-    field = models.CharField(max_length=100, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     account = models.ForeignKey(AccountModel, on_delete=models.CASCADE, null=True)
 

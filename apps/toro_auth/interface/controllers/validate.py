@@ -27,7 +27,7 @@ class ValidateView(APIView):
         },
         operation_summary="토큰 검증",
         operation_description="Access Token의 유효성을 검증하는 API입니다.",
-        tags=["Authentication"]
+        tags=["Token"]
     )
     def post(self, request, *args, **kwargs):
         try:

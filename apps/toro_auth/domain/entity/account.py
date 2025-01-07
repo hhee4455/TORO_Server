@@ -20,5 +20,7 @@ class Account:
     email: str
     password: str
     name: str
+    nickname: str
+    phone: str
     date_joined: timezone = field(default_factory=timezone.now)
     is_staff: bool = False

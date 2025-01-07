@@ -34,7 +34,7 @@ class UpdateRefreshTokenView(APIView):
         },
         operation_summary="Access Token 갱신",
         operation_description="Refresh Token을 검증하여 새로운 Access Token을 발급합니다.",
-        tags=["Authentication"]
+        tags=["Token"]
     )
     def post(self, request, update_refresh_token_service: UpdateRefreshTokenService = update_refresh_token_service, *args, **kwargs):
         try:

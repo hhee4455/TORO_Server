@@ -15,11 +15,7 @@ class UserMapper:
             bio=user_model.bio,
             is_public=user_model.is_public,
             last_seen=user_model.last_seen,
-            location=user_model.location,
-            available_for_work=user_model.available_for_work,
             follower_count=user_model.follower_count,
-            fieldwork_availability=user_model.fieldwork_availability,
-            field=user_model.field,
             is_active=user_model.is_active,
         )
 
@@ -34,11 +30,7 @@ class UserMapper:
             bio=user.bio,
             is_public=user.is_public,
             last_seen=user.last_seen,
-            location=user.location,
-            available_for_work=user.available_for_work,
             follower_count=user.follower_count,
-            fieldwork_availability=user.fieldwork_availability,
-            field=user.field,
             is_active=user.is_active,
             account=account_instance,
         )

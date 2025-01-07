@@ -25,7 +25,7 @@ class SignupView(APIView):
         },
         operation_summary="회원가입",
         operation_description="회원가입을 요청하는 API입니다.",
-        tags=["Authentication"]
+        tags=["Auth"]
     )
     def post(self, request, *args, **kwargs):
         try:
@@ -39,7 +39,9 @@ class SignupView(APIView):
             result = self.signup_service.signup_user(
                 email=validated_data["email"],
                 password=validated_data["password"],
-                name=validated_data["name"]
+                name=validated_data["name"],
+                nickname=validated_data("nickname"), 
+                phone=validated_data("phone")         
             )
             return self._success_response(result)
 

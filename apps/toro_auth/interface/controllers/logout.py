@@ -25,7 +25,7 @@ class LogoutView(APIView):
         },
         operation_summary="로그아웃",
         operation_description="로그아웃을 요청하는 API입니다.",
-        tags=["Authentication"]
+        tags=["Auth"]
     )
     def post(self, request, *args, **kwargs):
         try:

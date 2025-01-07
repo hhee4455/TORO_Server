@@ -27,7 +27,7 @@ class EmailRequestView(APIView):
         },
         operation_summary="이메일 전송",
         operation_description="이메일 전송을 요청하는 API입니다.",
-        tags=["Authentication"]
+        tags=["Email"]
     )
     def post(self, request, *args, **kwargs):
         try:
